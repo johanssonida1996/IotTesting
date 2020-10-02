@@ -8,12 +8,12 @@ namespace DeviceApp.Service
 {
     public class DeviceService
     {
-        private static DeviceClient deviceClient = DeviceClient.CreateFromConnectionString("HostName=ec-win20-iothubida.azure-devices.net;DeviceId=DeviceApp;SharedAccessKey=sDqSPRC5bS8mLeeQ5OB3jCcl8dQllEQRuMHChWMhl1M=", TransportType.Mqtt);
-        private static int telemetryInterval = 5;
-        private static Random rnd = new Random();
+        public static DeviceClient deviceClient = DeviceClient.CreateFromConnectionString("HostName=ec-win20-iothubida.azure-devices.net;DeviceId=DeviceApp;SharedAccessKey=sDqSPRC5bS8mLeeQ5OB3jCcl8dQllEQRuMHChWMhl1M=", TransportType.Mqtt);
+        public static int telemetryInterval = 10;
+        public static Random rnd = new Random();
 
 
-        private static Task<MethodResponse> SetTelemetryInterval(MethodRequest request, object userContext)
+        public static Task<MethodResponse> SetTelemetryInterval(MethodRequest request, object userContext)
         {
             var payload = Encoding.UTF8.GetString(request.Data).Replace("\"", "");
 
@@ -32,7 +32,7 @@ namespace DeviceApp.Service
             }
         }
 
-        private static async Task SendMessageAsync()
+        public static async Task SendMessageAsync()
         {
             while (true)
             {

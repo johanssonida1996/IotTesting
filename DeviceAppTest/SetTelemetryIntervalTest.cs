@@ -1,23 +1,31 @@
 using DeviceApp.Service;
 using Microsoft.Azure.Devices.Client;
 using System;
+using System.Text;
 using Xunit;
 
 namespace DeviceAppTest
 {
     public class SetTelemetryIntervalTest
     {
-        private DeviceClient deviceClient = DeviceClient.CreateFromConnectionString("", TransportType.Mqtt);
+        
+        
+            [Fact]
+            public void Task_SetTelemetryInterval_SouldReturnOKStatusCode()
+            {
+                var array = Encoding.UTF8.GetBytes("10");
+                var response = DeviceService.SetTelemetryInterval(new MethodRequest("SetTelementryInterval", array), null).GetAwaiter().GetResult();
+                
 
-        [Theory]
-        [InlineData("SetTelementryInterval","10", 200)]
-        [InlineData("SetInterval", "10", 501)]
-
-        public void SetTelementryInterval_ShouldChangeTheInterval(string methodName, string payload, int statusCode)
-        {
-            deviceClient.SetMethodDefaultHandlerAsync(methodName, DeviceService.SetTelemetryInterval, null).Wait();
-            Assert.Equal
+                Assert.Equal(200, response.Status);
+            }
         }
 
     }
-}
+    
+
+
+
+        
+
+

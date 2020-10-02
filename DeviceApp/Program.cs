@@ -1,8 +1,11 @@
-﻿using Microsoft.Azure.Devices.Client;
+﻿using DeviceApp.Service;
+using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+
+
 
 namespace DeviceApp
 {
@@ -11,8 +14,8 @@ namespace DeviceApp
 
         static void Main(string[] args)
         {
-            deviceClient.SetMethodHandlerAsync("SetTelemetryInterval", SetTelemetryInterval, null).Wait();
-            SendMessageAsync().GetAwaiter();
+            DeviceService.deviceClient.SetMethodHandlerAsync("SetTelemetryInterval", DeviceService.SetTelemetryInterval, null).Wait();
+            DeviceService.SendMessageAsync().GetAwaiter();
 
             Console.ReadKey();
         }              

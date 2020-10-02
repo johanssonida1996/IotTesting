@@ -6,9 +6,9 @@ namespace ServiceAppTest
     public class UnitTest1
     {
         [Fact]
-        public void Test1()
+        public void InvokeMethodTest()
         {
-
+            Task test = ServiceApp.Program.InvokeMethod("test", "test", "test");
         }
     }
 }
